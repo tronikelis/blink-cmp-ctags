@@ -1,6 +1,6 @@
 # blink-cmp-ctags
 
-blink.cmp source for (c)tags
+Async blink.cmp source for (c)tags
 
 ## Quick start
 
@@ -32,7 +32,6 @@ sources = {
     },
 },
 ```
-
 
 ## Opts
 
@@ -68,3 +67,6 @@ opts = {
     incomplete_threshold = 3,
 },
 ```
+
+
+
