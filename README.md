@@ -2,6 +2,8 @@
 
 Async blink.cmp source for (c)tags
 
+[![asciicast](https://asciinema.org/a/AuQaGJ2ZRdtsBXWKpBSFwC05U.svg)](https://asciinema.org/a/AuQaGJ2ZRdtsBXWKpBSFwC05U)
+
 ## Quick start
 
 Generate ctags for your project with `ctags -R --sort=foldcase`
