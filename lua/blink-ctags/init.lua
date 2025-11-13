@@ -23,6 +23,7 @@ local Source = {
 			C = vim.lsp.protocol.CompletionItemKind.Constant,
 			f = vim.lsp.protocol.CompletionItemKind.Function,
 			k = vim.lsp.protocol.CompletionItemKind.Class,
+			c = vim.lsp.protocol.CompletionItemKind.Class,
 			m = vim.lsp.protocol.CompletionItemKind.Method,
 			n = vim.lsp.protocol.CompletionItemKind.File,
 			v = vim.lsp.protocol.CompletionItemKind.Variable,
