@@ -50,6 +50,11 @@ function Source:get_prefix_search()
 end
 
 function Source:get_completions(ctx, callback)
+	if #vim.fn.tagfiles() == 0 then
+		callback({ items = {} })
+		return
+	end
+
 	local filename_origin = vim.fn.expand("%:p")
 
 	local cmd = {
