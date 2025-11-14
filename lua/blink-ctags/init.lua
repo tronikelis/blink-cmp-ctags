@@ -51,7 +51,11 @@ end
 
 function Source:get_completions(ctx, callback)
 	if #vim.fn.tagfiles() == 0 then
-		callback({ items = {} })
+		callback({
+			items = {},
+			is_incomplete_backward = false,
+			is_incomplete_forward = false,
+		})
 		return
 	end
 
