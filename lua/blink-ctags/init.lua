@@ -48,7 +48,7 @@ function Source:get_prefix_search()
 end
 
 function Source:get_completions(ctx, callback)
-	if #vim.fn.tagfiles() == 0 then
+	if vim.bo.buftype ~= "" or #vim.fn.tagfiles() == 0 then
 		callback()
 		return
 	end
@@ -71,7 +71,7 @@ function Source:get_completions(ctx, callback)
 
 	local process = vim.system(
 		cmd,
-		{ text = true },
+		{ text = true, cwd = vim.fn.expand("%:p:h") },
 		vim.schedule_wrap(function(out)
 			if out.signal ~= 0 then
 				callback()
