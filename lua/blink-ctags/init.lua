@@ -61,6 +61,7 @@ function Source:get_completions(ctx, callback)
 
 	local cmd = {
 		"nvim",
+		"--clean",
 		"--headless",
 		string.format("+set tagcase=%s", self.opts.tagcase),
 		string.format(
