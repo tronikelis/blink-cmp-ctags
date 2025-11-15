@@ -65,8 +65,6 @@ opts = {
     -- show tags for the current file extension only
     match_filename = true,
     tagcase = "ignore",
-    -- after keyword reaches this length, stop filtering for new tags
-    incomplete_threshold = 3,
 },
 ```
 

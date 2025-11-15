@@ -4,7 +4,6 @@
 --- @field prefix_search boolean?
 --- @field match_filename boolean?
 --- @field tagcase string?
---- @field incomplete_threshold integer?
 
 --- @class blink-ctags.Source
 --- @field opts blink-ctags.Source.Opts
@@ -31,7 +30,6 @@ local Source = {
 		prefix_search = true,
 		match_filename = true,
 		tagcase = "ignore",
-		incomplete_threshold = 3,
 	},
 }
 
@@ -111,12 +109,10 @@ function Source:get_completions(ctx, callback)
 				end
 			end
 
-			local incomplete = #ctx:get_keyword() < self.opts.incomplete_threshold
-
 			callback({
 				items = items,
-				is_incomplete_backward = incomplete,
-				is_incomplete_forward = incomplete,
+				is_incomplete_backward = true,
+				is_incomplete_forward = false,
 			})
 		end)
 	)
