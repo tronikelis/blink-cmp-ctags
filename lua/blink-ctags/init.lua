@@ -49,11 +49,7 @@ end
 
 function Source:get_completions(ctx, callback)
 	if #vim.fn.tagfiles() == 0 then
-		callback({
-			items = {},
-			is_incomplete_backward = false,
-			is_incomplete_forward = false,
-		})
+		callback()
 		return
 	end
 
@@ -78,6 +74,7 @@ function Source:get_completions(ctx, callback)
 		{ text = true },
 		vim.schedule_wrap(function(out)
 			if out.signal ~= 0 then
+				callback()
 				return
 			end
 
