@@ -61,7 +61,7 @@ function Source:get_completions(ctx, callback)
 		"--headless",
 		string.format("+set tagcase=%s", self.opts.tagcase),
 		string.format(
-			[[+lua print(vim.json.encode(vim.fn.taglist("%s%s", "%s")))]],
+			[[+lua io.write(vim.mpack.encode(vim.fn.taglist("%s%s", "%s")))]],
 			self:get_prefix_search(),
 			vim.fn.escape(ctx:get_keyword(), '"'),
 			vim.fn.escape(filename_origin, '"')
@@ -71,14 +71,14 @@ function Source:get_completions(ctx, callback)
 
 	local process = vim.system(
 		cmd,
-		{ text = true, cwd = vim.fn.expand("%:p:h") },
+		{ text = false, cwd = vim.fn.expand("%:p:h") },
 		vim.schedule_wrap(function(out)
 			if out.signal ~= 0 then
 				callback()
 				return
 			end
 
-			local tags = vim.json.decode(out.stderr or "[]")
+			local tags = vim.mpack.decode(out.stdout or "[]")
 
 			---@type lsp.CompletionItem[]
 			local items = {}
