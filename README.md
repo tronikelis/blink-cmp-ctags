@@ -2,7 +2,7 @@
 
 Async blink.cmp source for (c)tags
 
-[![asciicast](https://asciinema.org/a/AuQaGJ2ZRdtsBXWKpBSFwC05U.svg)](https://asciinema.org/a/AuQaGJ2ZRdtsBXWKpBSFwC05U)
+[![asciicast](https://asciinema.org/a/WpNC9NLyMQ4jUbydhlWK4dmYP.svg)](https://asciinema.org/a/WpNC9NLyMQ4jUbydhlWK4dmYP)
 
 ## Quick start
 
