@@ -60,6 +60,7 @@ function Source:get_completions(ctx, callback)
 		"--clean",
 		"--headless",
 		string.format("+set tagcase=%s", self.opts.tagcase),
+		string.format("+set tags=%s", vim.api.nvim_get_option_value("tags", {})),
 		string.format(
 			[[+lua io.write(vim.mpack.encode(vim.fn.taglist("%s%s", "%s")))]],
 			self:get_prefix_search(),
@@ -71,7 +72,7 @@ function Source:get_completions(ctx, callback)
 
 	local process = vim.system(
 		cmd,
-		{ text = false, cwd = vim.fn.expand("%:p:h") },
+		{ text = false },
 		vim.schedule_wrap(function(out)
 			if out.signal ~= 0 then
 				callback()
