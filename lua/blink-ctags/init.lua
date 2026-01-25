@@ -59,8 +59,8 @@ function Source:get_completions(ctx, callback)
 		"nvim",
 		"--clean",
 		"--headless",
-		string.format("+set tagcase=%s", self.opts.tagcase),
-		string.format("+set tags=%s", vim.api.nvim_get_option_value("tags", {})),
+		string.format("+sandbox set tagcase=%s", self.opts.tagcase),
+		string.format("+sandbox set tags=%s", vim.api.nvim_get_option_value("tags", {})),
 		string.format(
 			[[+lua io.write(vim.mpack.encode(vim.fn.taglist("%s%s", "%s")))]],
 			self:get_prefix_search(),
