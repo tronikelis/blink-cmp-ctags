@@ -54,6 +54,7 @@ function Source:get_completions(ctx, callback)
 	end
 
 	local filename_origin = vim.fn.expand("%:p")
+	local prefix_search = self:get_prefix_search()
 
 	local cmd = {
 		"nvim",
@@ -63,8 +64,8 @@ function Source:get_completions(ctx, callback)
 		string.format("+sandbox set tags=%s", vim.api.nvim_get_option_value("tags", {})),
 		string.format(
 			[[+lua io.write(vim.mpack.encode(vim.fn.taglist("%s%s", "%s")))]],
-			self:get_prefix_search(),
-			vim.fn.escape(ctx:get_keyword(), '"'),
+			prefix_search,
+			vim.fn.escape(ctx:get_keyword(), '"' .. prefix_search),
 			vim.fn.escape(filename_origin, '"')
 		),
 		"+q",
