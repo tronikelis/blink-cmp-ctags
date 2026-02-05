@@ -65,7 +65,7 @@ function Source:get_completions(ctx, callback)
 		string.format(
 			[[+lua io.write(vim.mpack.encode(vim.fn.taglist("%s%s", "%s")))]],
 			prefix_search,
-			vim.fn.escape(ctx:get_keyword(), '"' .. prefix_search),
+			vim.fn.escape(ctx:get_keyword(), '"$' .. prefix_search),
 			vim.fn.escape(filename_origin, '"')
 		),
 		"+q",
