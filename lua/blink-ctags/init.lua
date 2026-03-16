@@ -47,12 +47,18 @@ function Source:get_prefix_search()
 	return ""
 end
 
-function Source:get_completions(ctx, callback)
-	if vim.bo.buftype ~= "" or #vim.fn.tagfiles() == 0 then
-		callback()
-		return
-	end
+function Source:enabled()
+	return vim.bo.buftype == "" and #vim.fn.tagfiles() ~= 0
+end
 
+---@param filename string
+---@return string
+local function filename_extension(filename)
+	local extension = filename:match(".*%.(.*)")
+	return extension or ""
+end
+
+function Source:get_completions(ctx, callback)
 	local filename_origin = vim.fn.expand("%:p")
 	local prefix_search = self:get_prefix_search()
 
@@ -96,12 +102,12 @@ function Source:get_completions(ctx, callback)
 					detail = vim.trim(v.cmd:sub(3, -3)),
 					kind = self.opts.kind_map[v.kind],
 					labelDetails = {
-						description = vim.fn.fnamemodify(v.filename, ":t"),
+						description = vim.fs.basename(v.filename),
 					},
 				}
 
 				if self.opts.match_filename then
-					if vim.fn.fnamemodify(v.filename, ":e") == vim.fn.fnamemodify(filename_origin, ":e") then
+					if filename_extension(v.filename) == filename_extension(filename_origin) then
 						table.insert(items, item)
 					end
 				else
