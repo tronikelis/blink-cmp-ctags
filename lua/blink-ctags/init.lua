@@ -54,7 +54,7 @@ end
 ---@param filename string
 ---@return string
 local function filename_extension(filename)
-	local extension = filename:match(".*%.(.*)")
+	local extension = filename:match("^.*%.(.*)$")
 	return extension or ""
 end
 
