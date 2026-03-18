@@ -101,6 +101,8 @@ function Source:get_completions(ctx, callback)
 					label = v.name,
 					detail = vim.trim(v.cmd:sub(3, -3)),
 					kind = self.opts.kind_map[v.kind],
+					insertTextFormat = vim.lsp.protocol.InsertTextFormat.PlainText,
+					insertText = v.name,
 					labelDetails = {
 						description = vim.fs.basename(v.filename),
 					},
